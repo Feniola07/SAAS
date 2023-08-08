@@ -1,0 +1,67 @@
+{% extends 'assignment/base.html' %}
+
+
+{% block content %}
+	
+
+	<h1><center>QUESTIONS</center>  	</h1>
+	<br><br>
+		{% for Quiz in all_quiz %}
+
+			<div class="card">
+			  <div class="card-header">
+			    {{Quiz}}
+			  </div>
+			  <div class="card-body">
+			    <h5 class="card-title">{{Quiz.quiz}}</h5>
+			    <p class="card-text">
+			    	Date:{{Quiz.date}}
+			    	<li>Participants:</li>
+			    	{% for student in Quiz.registeredStudents.all %}
+					{{student}}
+					{% endfor %}
+			    	
+			    </p>
+			    <br><br>			    
+
+			  </div>
+
+
+				<div class="card-footer">
+			  		<a href="{% url 'answer' Quiz.id %}" class="btn btn-secondary " tabindex="-1" role="button" aria-disabled="true">Answer</a> {{Quiz.description}}	
+  				</div>
+			</div>
+
+
+			<br><br>
+
+		{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!-- {% for Quiz in all_quiz %}
+			<strong>{{Quiz}}</strong>
+
+			<ul>
+				<li>Quiz Number :{{Quiz.quiz_number}}</li>
+				{% for student in Quiz.registeredStudents.all %}
+				<li>Particiants:{{student}}</li>
+				{% endfor %}
+				<li>Date:{{Quiz.date}}</li>
+				<li>Question:{{Quiz.quiz}}</li>
+				<li>Answer:{{Quiz.description}}</li>
+			</ul>
+		{% endfor %}
+
+{% endblock %} -->

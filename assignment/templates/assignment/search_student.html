@@ -1,0 +1,30 @@
+{% extends 'assignment/base.html' %}
+
+
+{% block content %}
+	<center>
+
+		{% if searched %}
+			<h1> You searched for {{searched}} </h1><br><br>
+
+			{% for student in students %}
+				{{student}} <br>
+				{{student.department}}
+				<br>
+				{{student.level}}
+				<br>
+				{{student.phone}}
+				<br><br>
+			{% endfor %}
+			
+		
+		{% else %}
+
+			<h1>You need to search </h1>
+
+		{% endif %}
+
+		
+	</center>
+
+{% endblock %}
