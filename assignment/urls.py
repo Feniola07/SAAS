@@ -10,6 +10,8 @@ urlpatterns = [
     path('add-quiz',views.add_quiz,name = "add-quiz"),
     path('answers/<questionsid>',views.answers,name = "answer"),
     path('download_questions',views.download_questions,name ="download_questions" ),
-    path('download_students',views.download_registeredstudents,name ="download_students")
+    path('download_students',views.download_registeredstudents,name ="download_students"),
+    path('download_questionspdf',views.download_questionspdf,name ="download_questionspdf")
+
 
 ]

@@ -6,7 +6,7 @@
 
 	<h1><center>QUESTIONS</center>  	</h1>
 	<br><br>
-		{% for Quiz in all_quiz %}
+		{% for Quiz in quiz %}
 
 			<div class="card">
 			  <div class="card-header">
@@ -34,34 +34,37 @@
 
 
 			<br><br>
-
 		{% endfor %}
+		
 
 
 
+		<!-- Pagination in django -->
+		<nav aria-label="Page navigation example">
+  			<ul class="pagination justify-content-center">
+  				
+  			
+				<!-- to add pagination  -->
+
+				{%if quiz.has_previous%}
+				<li class="page-item"><a class="page-link" href="?page= 1">&laquo First </a></li>
+				<li class="page-item"><a class="page-link" href="?page= {{quiz.previous_page_number}}">Previous </a></li>
+				{% endif %}
+
+				<!-- <li class="page-item disabled"><a class="page-link"> Page{{quiz.number}} of {{quiz.paginator.num_pages}}</a></li> -->
 
 
 
-
-
-
-
-
-
-
-
-		<!-- {% for Quiz in all_quiz %}
-			<strong>{{Quiz}}</strong>
-
-			<ul>
-				<li>Quiz Number :{{Quiz.quiz_number}}</li>
-				{% for student in Quiz.registeredStudents.all %}
-				<li>Particiants:{{student}}</li>
+					<!-- to add numbers of pages in boxes   -->
+				{%for i in nums %}
+					<li class="page-item"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter}}</a></li>
 				{% endfor %}
-				<li>Date:{{Quiz.date}}</li>
-				<li>Question:{{Quiz.quiz}}</li>
-				<li>Answer:{{Quiz.description}}</li>
-			</ul>
-		{% endfor %}
 
-{% endblock %} -->
+
+				{% if quiz.has_next %}
+					<li class="page-item"><a class="page-link" href="?page= {{quiz.next_page_number}}">Next</a></li>
+					<li class="page-item"><a class="page-link" href="?page= {{quiz.paginator.num_pages}}">Last &raquo</a></li>
+				{% endif %}
+			</ul>
+		</nav>
+{% endblock %}

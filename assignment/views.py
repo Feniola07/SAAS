@@ -8,6 +8,53 @@ from .forms import Studentregister,Addquiz,Answerform
 from django.http import HttpResponse
 import csv 
 
+# import for pdf download 
+from django.http import FileResponse
+import io 
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch 
+from reportlab.lib.pagesizes import letter
+
+# import pagination stuff
+from django.core.paginator import Paginator
+
+# Generate pdf file to download quesion and answer 
+def download_questionspdf(request):
+	# Creaste bytestream buffer 
+	buf  =io.BytesIO() 
+
+	# Create a canvas 
+	c  = canvas.Canvas(buf, pagesize =letter,bottomup =0)
+	# Create a textobject 
+	textob  = c.beginText()
+	textob.setTextOrigin(inch,inch)
+	textob.setFont("Helvetica",14)
+
+	# Designate models 
+	quizs  = Quiz.objects.all()
+	lines  =[]
+
+
+	for quiz in quizs:
+		lines.append(quiz.quiz_number)
+		lines.append(quiz.quiz)
+		# lines.append(quiz.description)
+		lines.append(" ")
+
+
+	# Loop
+	for line in lines:
+		textob.textLine(line)
+
+	# finish up 
+	c.drawText(textob)
+	c.showPage()
+	c.save()
+	buf.seek(0)
+
+	# return somethung 
+	return FileResponse(buf, as_attachment  = True ,filename  ='allquestions.pdf')
+
 # Generate All  registered student csv 
 def download_registeredstudents (request):
 	response = HttpResponse(content_type ='text/csv')
@@ -49,7 +96,7 @@ def download_questions (request):
 def search_student(request):
 
 	if request.method == "POST":
-		# sarched is the namme given to the input bar so we can target the input and know what to query the databse with 
+		# searched is the namme given to the input bar so we can target the input and know what to query the databse with 
 		searched = request.POST['searched']
 		students= StudentUsers.objects.filter(name__contains=searched)
 		return render (request,'assignment/search_student.html',{'searched':searched , 'students': students})
@@ -110,7 +157,16 @@ def studentregister(request):
 
 def quiz_page(request):
 	all_quiz = Quiz.objects.all()
-	return render (request,'assignment/Quiz.html',{'all_quiz' : all_quiz})
+
+
+	# Set up pagination 
+	p =  Paginator(Quiz.objects.all(), 1)
+	page = request.GET.get('page')
+	quiz = p.get_page(page)
+
+	# to add number of pages we use this hack 
+	nums = "a" * (quiz.paginator.num_pages)
+	return render (request,'assignment/Quiz.html',{'all_quiz' : all_quiz,'quiz':quiz,'nums':nums})
 
 def home(request, currentuser , year  =datetime.now().year , month  =datetime.now().strftime('%B')):
 	# name  = "Eniola"

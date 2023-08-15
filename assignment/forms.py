@@ -18,7 +18,7 @@ class Answerform(ModelForm):
 
 
 		widgets = {
-		'quiz':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Question'}),
+		'quiz':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Department'}),
 
 		'description':forms.Textarea(attrs= {'class': 'form-control', 'Placeholder':'Answer' }),
 
@@ -56,7 +56,7 @@ class Addquiz(ModelForm):
 class Studentregister(ModelForm):
 	class Meta:
 		model  = StudentUsers
-		fields  = ('name','department','level','address','zip_code','phone','email_address','lecturer')
+		fields  = ('name','department','level','address','zip_code','phone','email_address')
 
 		labels = {
 		'name' : '',
@@ -66,19 +66,19 @@ class Studentregister(ModelForm):
 		'zip_code':'',
 		'phone':'',
 		'email_address':'',
-		'lecturer':'',
+		# 'lecturer':'',
 		}
 
 
 		widgets = {
 		'name' : forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Fullname'}),
-		'department':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Department'}),
+		'department':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Password'}),
 		'level':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder':'Level' }),
 		'address':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Address'}),
 		'zip_code':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder':'Zip-code' }),
 		'phone':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder':'Phone Number' }),
 		'email_address':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Email address'}),
-		'lecturer':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Lecturer'}),
+		# 'lecturer':forms.TextInput(attrs= {'class': 'form-control', 'Placeholder': 'Lecturer'}),
 
 
 
