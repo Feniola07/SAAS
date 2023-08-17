@@ -169,8 +169,8 @@ def quiz_page(request):
 	return render (request,'assignment/Quiz.html',{'all_quiz' : all_quiz,'quiz':quiz,'nums':nums})
 
 def home(request, currentuser , year  =datetime.now().year , month  =datetime.now().strftime('%B')):
-	# name  = "Eniola"
-	user_name = StudentUsers.objects.get(pk =currentuser)
+	name  = "Eniola"
+	# user_name = StudentUsers.objects.get(pk =currentuser)
 	month  = month.title()
 	# convert month to number
 	month_number  = list(calendar.month_name).index(month)
@@ -194,5 +194,5 @@ def home(request, currentuser , year  =datetime.now().year , month  =datetime.no
 		"cal" : cal,
 		"current_year" : current_year,
 		"time" : time,
-		# "currentuser": currentuser
+		# "name": name
 		})
