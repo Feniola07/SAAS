@@ -187,12 +187,11 @@ def home(request, name , year  =datetime.now().year , month  =datetime.now().str
 	time =  now. strftime('%I:%M %p')
 	return render(request, 
 		'assignment/home.html',{
-		"user_name" : user_name,
 		"year" : year,
 		"month" : month,
 		"month_number" : month_number,
 		"cal" : cal,
 		"current_year" : current_year,
 		"time" : time,
-		# "name": name
+		"name": name
 		})
