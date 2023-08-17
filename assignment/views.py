@@ -168,7 +168,7 @@ def quiz_page(request):
 	nums = "a" * (quiz.paginator.num_pages)
 	return render (request,'assignment/Quiz.html',{'all_quiz' : all_quiz,'quiz':quiz,'nums':nums})
 
-def home(request, name , year  =datetime.now().year , month  =datetime.now().strftime('%B')):
+def home(request, year  =datetime.now().year , month  =datetime.now().strftime('%B')):
 	name  = "Eniola"
 	# user_name = StudentUsers.objects.all()
 	month  = month.title()
