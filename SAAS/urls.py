@@ -5,6 +5,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('assignment.urls')),
+    # this path are used for user authentication 
     path('students/',include('django.contrib.auth.urls')),
     path('students/',include('students.urls')),
 ]

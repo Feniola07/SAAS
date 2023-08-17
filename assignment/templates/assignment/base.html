@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SAAS</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+      body{background: #f4f4f4;}
+    </style>
   </head>
   <body>
   	{% include 'assignment/navbar.html' %}
@@ -16,7 +19,7 @@
       {%if messages %}
         {%for message in messages %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
-          <strong>Error!</strong> {{message}}
+           {{message}}
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
           
